@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvtxsxrfbj4jn"]
+
+[ext_resource type="Script" path="res://actors/drone/drone.gd" id="1_nhrup"]
+[ext_resource type="Script" path="res://actors/drone/drone_camera.gd" id="2_4eo73"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7g6lr"]
+size = Vector3(1, 0.300537, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cbt1j"]
+size = Vector3(1, 0.2, 1)
+
+[node name="drone" type="CharacterBody3D" node_paths=PackedStringArray("camera")]
+script = ExtResource("1_nhrup")
+camera = NodePath("viewport/camera_root/h/v/camera")
+
+[node name="shape" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_7g6lr")
+
+[node name="mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+mesh = SubResource("BoxMesh_cbt1j")
+
+[node name="viewport" type="SubViewport" parent="."]
+handle_input_locally = false
+gui_disable_input = true
+gui_snap_controls_to_pixels = false
+
+[node name="camera_root" type="Node3D" parent="viewport"]
+script = ExtResource("2_4eo73")
+
+[node name="h" type="Node3D" parent="viewport/camera_root"]
+
+[node name="v" type="Node3D" parent="viewport/camera_root/h"]
+
+[node name="camera" type="Camera3D" parent="viewport/camera_root/h/v"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.100121, 0)
+
+[node name="mesh" type="MeshInstance3D" parent="viewport/camera_root/h/v/camera"]

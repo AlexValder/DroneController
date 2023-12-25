@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cubupo8pp850k"
+path="res://.godot/imported/second platforms.obj-e59c7d93362dd3d49d064752650d35a6.mesh"
+
+[deps]
+
+files=["res://.godot/imported/second platforms.obj-e59c7d93362dd3d49d064752650d35a6.mesh"]
+
+source_file="res://raw_assets/arena/second platforms/second platforms.obj"
+dest_files=["res://.godot/imported/second platforms.obj-e59c7d93362dd3d49d064752650d35a6.mesh", "res://.godot/imported/second platforms.obj-e59c7d93362dd3d49d064752650d35a6.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

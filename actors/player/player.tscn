@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://b4sh4nd012ts7"]
+
+[ext_resource type="Script" path="res://actors/player/player.gd" id="1_pksyr"]
+[ext_resource type="Script" path="res://actors/player/camera_root.gd" id="2_tnv3q"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ftw6q"]
+radius = 0.4
+height = 1.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l7qym"]
+albedo_color = Color(0.533333, 0.494118, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0h1x2"]
+material = SubResource("StandardMaterial3D_l7qym")
+radius = 0.4
+height = 1.8
+radial_segments = 16
+rings = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_txa66"]
+albedo_color = Color(0.733333, 0, 0.262745, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i05bi"]
+material = SubResource("StandardMaterial3D_txa66")
+size = Vector3(0.1, 0.1, 0.5)
+
+[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("camera")]
+floor_block_on_wall = false
+script = ExtResource("1_pksyr")
+camera = NodePath("camera_root/h/v/camera")
+
+[node name="shape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_ftw6q")
+
+[node name="body" type="MeshInstance3D" parent="shape"]
+layers = 2
+mesh = SubResource("CapsuleMesh_0h1x2")
+skeleton = NodePath("../..")
+
+[node name="hand" type="MeshInstance3D" parent="shape/body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.300042, -0.577097)
+layers = 2
+mesh = SubResource("BoxMesh_i05bi")
+
+[node name="camera_root" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0)
+script = ExtResource("2_tnv3q")
+
+[node name="h" type="Node3D" parent="camera_root"]
+
+[node name="v" type="Node3D" parent="camera_root/h"]
+
+[node name="camera" type="Camera3D" parent="camera_root/h/v"]
+cull_mask = 1048573
+current = true
